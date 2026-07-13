@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a5c38">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Calcolo Animali">
+<title>Calcolo Animali · Tezza SRL</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1a5c38; --green-d:#123f27; --green-l:#2b8a57;
+    --bg:#f3f1ec; --paper:#faf8f4; --card:#ffffff; --line:#e6e0d8;
+    --ink:#1b2420; --muted:#6b7a72; --soft:#9aa79f;
+    --green-soft:#e9f2ec; --amber-soft:#fbeccd;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --radius:14px; --shadow:0 1px 2px rgba(20,40,30,.05),0 8px 22px rgba(20,40,30,.06);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:104px}
+  header.app{position:sticky;top:0;z-index:30;background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);
+    color:#fff;padding:13px 16px;padding-top:calc(13px + env(safe-area-inset-top,0));box-shadow:0 2px 14px rgba(18,63,39,.25)}
+  header.app .brand{display:flex;align-items:center;gap:12px;max-width:560px;margin:0 auto}
+  header.app .logo{height:34px;flex:0 0 auto;display:flex;align-items:center}
+  header.app h1{font-size:15.5px;margin:0;font-weight:700;letter-spacing:.2px}
+  header.app p{margin:2px 0 0;font-size:10.5px;opacity:.8;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  main{max-width:560px;margin:0 auto;padding:14px 13px 0}
+  .view{display:none}.view.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+  .card>.hd{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;padding:14px 15px;font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+  .card>.hd .ic{font-size:17px;width:22px;text-align:center}
+  .card>.hd .t{font-weight:700;font-size:14px;flex:1}
+  .card>.hd .chev{color:var(--soft);transition:transform .2s;font-size:12px}
+  .card.collapsed>.hd .chev{transform:rotate(-90deg)}
+  .card>.bd{padding:0 15px 15px}
+  .card.collapsed>.bd{display:none}
+  .field{margin-top:13px}.field:first-child{margin-top:4px}
+  .field label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.03em;text-transform:uppercase}
+  .field .hint{font-weight:600;color:var(--soft);font-size:10.5px;text-transform:none;letter-spacing:0}
+  input,select{width:100%;padding:12px;font-size:16px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;appearance:none;outline:none;font-family:inherit}
+  input[type=number]{font-family:var(--mono);font-weight:600}
+  input.ro{background:#f4f2ee;color:#6b7a72;font-weight:700}
+  input:focus,select:focus{border-color:var(--green-l);box-shadow:0 0 0 3px rgba(43,138,87,.14)}
+  select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%236b7a72' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row2 .field{margin-top:13px}
+  .unit{position:relative}.unit input{padding-right:38px}
+  .unit .u{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--soft);font-size:12px;font-weight:700;pointer-events:none;font-family:var(--mono)}
+  .sect-t{font-size:11px;font-weight:800;color:var(--green);letter-spacing:.08em;text-transform:uppercase;padding:14px 0 2px}
+  .slotB-off .slotB-fields{display:none}
+  .autop{background:var(--paper);border:1px dashed var(--line);border-radius:11px;padding:11px 12px;margin-top:14px}
+  .autop .ttl{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+  .autop .grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 14px}
+  .autop .it{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .autop .it .k{font-size:11.5px;color:var(--muted);font-weight:600}
+  .autop .it .v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink)}
+  .resbar{position:fixed;left:0;right:0;bottom:0;z-index:25;padding:10px 13px calc(10px + env(safe-area-inset-bottom,0))}
+  .resbar .inner{max-width:560px;margin:0 auto;background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 22px rgba(18,63,39,.32);cursor:pointer}
+  .resbar .lbl{font-size:10.5px;opacity:.82;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+  .resbar .big{font-family:var(--mono);font-size:27px;font-weight:700;line-height:1.05;margin-top:1px}
+  .resbar .big small{font-size:12px;opacity:.8;font-weight:600;margin-left:3px}
+  .resbar .go{font-size:13px;font-weight:700;background:rgba(255,255,255,.16);padding:9px 13px;border-radius:10px;white-space:nowrap}
+  .btn{border:0;border-radius:11px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+  .btn.primary{background:var(--green);color:#fff}
+  .btn.ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:560px;margin:4px auto 0}
+  .foot{text-align:center;color:var(--soft);font-size:10.5px;margin:14px auto 0;font-family:var(--mono);letter-spacing:.03em;max-width:560px;line-height:1.6}
+  .hero{background:linear-gradient(135deg,var(--green) 0%,var(--green-d) 100%);color:#fff;border-radius:var(--radius);padding:22px 18px;text-align:center;box-shadow:var(--shadow);margin-bottom:13px}
+  .hero .cap{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.82}
+  .hero .n{font-family:var(--mono);font-size:48px;font-weight:700;line-height:1;margin:7px 0 2px}
+  .hero .u{font-size:13px;opacity:.85;font-weight:600}
+  .hero .exact{font-family:var(--mono);font-size:11px;opacity:.66;margin-top:4px}
+  .hero .bind{margin-top:10px;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border-radius:20px;padding:5px 13px;font-size:11.5px;font-weight:700}
+  .notice{background:var(--amber-soft);border:1px solid #eccf93;border-radius:12px;padding:11px 13px;font-size:12.5px;color:#7a4e07;margin-bottom:13px;line-height:1.45}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;box-shadow:var(--shadow)}
+  .tile.bind{border-color:var(--green);box-shadow:0 0 0 2px rgba(26,92,56,.16),var(--shadow);background:linear-gradient(180deg,var(--green-soft),#fff 60%)}
+  .tile .nm{font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:6px;line-height:1.25}
+  .tile .badge{font-size:8.5px;font-weight:800;color:#fff;background:var(--green);border-radius:5px;padding:2px 5px;letter-spacing:.05em}
+  .tile .v{font-family:var(--mono);font-size:23px;font-weight:700;color:var(--ink);margin-top:7px;line-height:1}
+  .tile.bind .v{color:var(--green-d)}
+  .tile .v small{font-size:11px;color:var(--soft);font-weight:600;margin-left:3px}
+  .tile .ds{font-size:10.5px;color:var(--soft);font-weight:600;margin-top:4px}
+  .tile .na{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--soft);margin-top:7px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px;margin-bottom:13px}
+  .panel .ph{font-size:12.5px;font-weight:800;margin-bottom:3px}
+  .panel .psub{font-size:11px;color:var(--soft);font-weight:600;margin-bottom:13px}
+  .bar-row{display:grid;grid-template-columns:118px 1fr 64px;align-items:center;gap:9px;margin:9px 0}
+  .bar-row .bl{font-size:11px;font-weight:700;color:var(--muted);line-height:1.15}
+  .bar-track{height:13px;background:var(--paper);border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+  .bar-fill{height:100%;border-radius:7px 0 0 7px;background:var(--green-l)}
+  .bar-fill.bind{background:linear-gradient(90deg,var(--green),var(--green-l))}
+  .bar-fill.dim{background:#c9d6cf}
+  .bar-val{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right}
+  .bar-val.bind{color:var(--green-d)}
+  .meta{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 15px;margin-bottom:13px}
+  .meta dt{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:0}
+  .meta dd{margin:0;font-size:12.5px;font-weight:600;text-align:right;font-family:var(--mono)}
+  .detail{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 15px 13px;margin-bottom:13px}
+  .detail .dl{font-size:10.5px;font-weight:800;color:var(--green);letter-spacing:.08em;text-transform:uppercase;padding:14px 0 5px;border-bottom:1px solid var(--line);margin-bottom:3px}
+  .drow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:5px 0;font-size:12.5px}
+  .drow .lab{color:var(--muted);font-weight:600}
+  .drow .val{font-weight:600;font-family:var(--mono);text-align:right;white-space:nowrap}
+  .disc{font-size:10.5px;color:var(--soft);line-height:1.5;padding:4px 2px;font-style:italic}
+  .pdfmode{display:block!important;position:fixed;left:-10000px;top:0;width:794px;background:#fff;z-index:-1}
+  .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:#123f27;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:all .3s;z-index:60;max-width:86%;text-align:center}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast.warn{background:#b96f10}
+  @page{size:A4;margin:12mm}
+  @media print{
+    body{background:#fff;padding:0}
+    body>*:not(#printPage){display:none!important}
+    #printPage{display:block!important}
+  }
+  /* ---- Frontpage di stampa (Tezza) ---- */
+  #printPage{display:none;font-size:12px;color:#111;line-height:1.45;max-width:186mm;margin:0 auto}
+  #printPage .ph-band{display:flex;align-items:center;justify-content:space-between;border-bottom:2.5px solid var(--green);padding-bottom:8px;margin-bottom:12px}
+  #printPage .ph-brand{display:flex;align-items:center;gap:10px}
+  #printPage .ph-mark{width:34px;height:34px;border-radius:8px;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:900;font-size:19px;font-family:Arial Black,Arial,sans-serif}
+  #printPage .ph-t1{font-size:16px;font-weight:800;color:var(--green-d);letter-spacing:.3px}
+  #printPage .ph-t2{font-size:9.5px;color:#666;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  #printPage .ph-date{font-size:10px;color:#666;font-family:var(--mono);text-align:right}
+  #printPage table{width:100%;border-collapse:collapse}
+  #printPage .cli td{padding:2.5px 0;font-size:11.5px}
+  #printPage .cli td:first-child{color:#666;font-weight:700;text-transform:uppercase;font-size:9.5px;letter-spacing:.05em;width:34mm}
+  #printPage .cli td:last-child{font-weight:700}
+  #printPage .sec{margin-top:13px}
+  #printPage .sec h3{font-size:10.5px;font-weight:800;color:var(--green-d);letter-spacing:.09em;text-transform:uppercase;border-bottom:1px solid #cfd8d2;padding-bottom:3px;margin:0 0 4px}
+  #printPage .ln td{padding:2.5px 0;vertical-align:baseline;font-size:11.5px}
+  #printPage .ln td.c1{width:62mm}
+  #printPage .ln td.c2{color:#444}
+  #printPage .ln td.num{text-align:right;font-family:var(--mono);font-weight:600;white-space:nowrap;width:30mm}
+  #printPage .ln.tot td{border-top:1px solid #cfd8d2;font-weight:800;padding-top:4px}
+  #printPage .ln .ann{font-style:italic;color:#777;font-size:10px;font-weight:500}
+  #printPage .final{margin-top:16px;background:var(--green);color:#fff;border-radius:10px;padding:12px 16px;display:flex;align-items:baseline;justify-content:space-between;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #printPage .final .fl{font-size:12.5px;font-weight:700;letter-spacing:.02em}
+  #printPage .final .fn{font-family:var(--mono);font-size:26px;font-weight:700}
+  #printPage .final .fn small{font-size:12px;font-weight:600;opacity:.85;margin-left:4px}
+  #printPage .bindln{margin-top:6px;font-size:10.5px;color:#555;text-align:right}
+  #printPage .disc-p{margin-top:14px;font-size:9px;color:#777;font-style:italic;line-height:1.5}
+  #printPage .tz-foot{margin-top:8px;border-top:1px solid #cfd8d2;padding-top:6px;font-size:9px;color:#666;font-family:var(--mono);display:flex;justify-content:space-between}
+  </style>
+</head>
+<body>
+<header class="app">
+  <div class="brand">
+    <span class="logo">
+      <svg width="96" height="30" viewBox="0 0 96 30" role="img" aria-label="Tezza SRL">
+        <rect x="0" y="1" width="28" height="28" rx="6.5" fill="#ffffff"/>
+        <text x="14" y="21.5" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="17" font-weight="900" fill="#1a5c38">T</text>
+        <text x="34" y="20" font-family="Arial,Helvetica,sans-serif" font-size="15.5" font-weight="800" fill="#ffffff" letter-spacing="1.5">TEZZA</text>
+      </svg>
+    </span>
+    <div>
+      <h1>Calcolo Numero Animali</h1>
+      <p>Tezza SRL · Nidi &amp; Voliere · v3.0</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="viewInput" class="view active">
+
+    <div class="card" id="sys">
+      <button class="hd" data-toggle><span class="ic">🐔</span><span class="t">Sistemi &amp; normativa</span><span class="chev">▾</span></button>
+      <div class="bd">
+        <div class="row2">
+          <div class="field"><label>Normativa</label><select id="D8"></select></div>
+          <div class="field"><label>Metodo area <span class="hint">(CBN/GN)</span></label><select id="D10"></select></div>
+        </div>
+        <div class="sect-t">Sistema A</div>
+        <div class="field"><label>Sistema</label><select id="sysA"></select></div>
+        <div class="row2">
+          <div class="field"><label>N° file</label><input id="rowsA" type="text" inputmode="decimal"></div>
+          <div class="field"><label>Sezioni / fila</label><input id="secsA" type="text" inputmode="decimal"></div>
+        </div>
+        <div class="sect-t">Sistema B <span class="hint">(opzionale — es. nido + voliera)</span></div>
+        <div id="slotB" class="slotB-off">
+          <div class="field"><label>Sistema</label><select id="sysB"></select></div>
+          <div class="slotB-fields">
+            <div class="row2">
+              <div class="field"><label>N° file</label><input id="rowsB" type="text" inputmode="decimal"></div>
+              <div class="field"><label>Sezioni / fila</label><input id="secsB" type="text" inputmode="decimal"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sect-t">Impianti reali <span class="hint">(vuoto = consiglio reale Tezza · Gallery doppie 4 linee)</span></div>
+        <div class="row2">
+          <div class="field"><label>Linee abbeveraggio</label><input id="C96o" type="text" inputmode="decimal" placeholder="auto"></div>
+          <div class="field"><label>Nipple / sezione 2,3 m <span class="hint">(16 = passo 15 cm)</span></label><input id="C97o" type="text" inputmode="decimal"></div>
+        </div>
+        <div class="field"><label>Circuiti catena alimentazione</label><input id="C86o" type="text" inputmode="decimal" placeholder="auto"></div>
+        <div class="autop" id="autop">
+          <div class="ttl">⚙︎ Parametri normativi (automatici)</div>
+          <div class="grid" id="autopGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="dim">
+      <button class="hd" data-toggle><span class="ic">📐</span><span class="t">Dimensioni</span><span class="chev">▾</span></button>
+      <div class="bd">
+        <div class="sect-t">Capannone</div>
+        <div class="row2">
+          <div class="field"><label>Larghezza</label><div class="unit"><input id="C13" type="text" inputmode="decimal"><span class="u">m</span></div></div>
+          <div class="field"><label>Lunghezza <span class="hint">(auto: sez × 2,3)</span></label><div class="unit"><input id="E13" type="text" inputmode="decimal" readonly class="ro"><span class="u">m</span></div></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>Sup. capannone <span class="hint">(auto)</span></label><div class="unit"><input id="M2CAP" type="text" readonly class="ro"><span class="u">m²</span></div></div>
+          <div class="field"><label>Sup. totale <span class="hint">(+ sezioni)</span></label><div class="unit"><input id="M2TOT" type="text" readonly class="ro"><span class="u">m²</span></div></div>
+        </div>
+        <div class="sect-t">Giardino d'inverno <span class="hint">(opz · 0 = assente)</span></div>
+        <div class="row2">
+          <div class="field"><label>Larghezza</label><div class="unit"><input id="C14" type="text" inputmode="decimal"><span class="u">m</span></div></div>
+          <div class="field"><label>Lunghezza</label><div class="unit"><input id="E14" type="text" inputmode="decimal"><span class="u">m</span></div></div>
+        </div>
+        <div class="sect-t">Walkover <span class="hint">(sezioni perse per fila)</span></div>
+        <div class="row2">
+          <div class="field"><label>SBN (C78)</label><input id="C78" type="text" inputmode="decimal"></div>
+          <div class="field"><label>GN/CBN/BG (C79)</label><input id="C79" type="text" inputmode="decimal"></div>
+        </div>
+        <div class="sect-t">Panfeed <span class="hint">(circuiti piatti — 0 = catena)</span></div>
+        <div class="field"><label>Circuiti panfeed (C89)</label><input id="C89" type="text" inputmode="decimal"></div>
+      </div>
+    </div>
+
+    <div class="card collapsed" id="ana">
+      <button class="hd" data-toggle><span class="ic">📋</span><span class="t">Anagrafica cliente</span><span class="chev">▾</span></button>
+      <div class="bd">
+        <div class="field"><label>Venditore</label><select id="VEND_SEL">
+          <option value="">— seleziona —</option>
+          <option>Guglielmo</option>
+          <option>Giacomo</option>
+          <option>Michel</option>
+          <option>Lattanzi</option>
+          <option>Monti</option>
+          <option value="ALTRO">Altro…</option>
+        </select></div>
+        <div class="field" id="VEND_ALTRO_WRAP" style="display:none"><label>Nome venditore</label><input id="VEND_ALTRO" type="text" placeholder="Scrivi il nome"></div>
+        <div class="field"><label>Cliente</label><input id="D4" type="text" placeholder="Nome cliente"></div>
+        <div class="row2">
+          <div class="field"><label>Nazione</label><input id="D5" type="text" placeholder="Nazione"></div>
+          <div class="field"><label>Numero VEN</label><input id="D6" type="text" placeholder="VEN-…"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">Build <b>v2.3</b> — replica fedele del foglio Excel Vencomatic,<br>validata sul preventivo ufficiale VEN2603150 (43.871 capi).<br>Verificata su 87 scenari (57 strutturati + 30 casuali): 2.088 valori identici cella per cella.</div>
+  </section>
+
+  <section id="viewResult" class="view">
+    <div id="report"></div>
+    <div class="actions" style="grid-template-columns:1fr 1.2fr 1fr">
+      <button class="btn ghost" id="back">‹ Modifica</button>
+      <button class="btn primary" id="save">💾 Salva calcolo</button>
+      <button class="btn ghost" id="print">⤓ PDF</button>
+    </div>
+    <div class="foot">Tezza SRL · Via E. Torricelli 13, 37135 Verona · P.IVA 02526240235<br>Dati tecnici Vencomatic Group — documento indicativo.</div>
+  </section>
+</main>
+
+<div id="printPage"></div>
+<div class="toast" id="toast"></div>
+
+<div class="resbar" id="resbar">
+  <div class="inner" id="resbarInner">
+    <div>
+      <div class="lbl">Capannone adatto per</div>
+      <div class="big"><span id="barNum">—</span> <small>animali</small></div>
+    </div>
+    <div class="go">Scheda ›</div>
+  </div>
+</div>
+
+<script>
+/* BirdCalc v2 — trascrizione 1:1 dell'Input Sheet Vencomatic (multi-sistema) */
+(function (root) {
+  "use strict";
+  function x15(v){ if(v===0||!isFinite(v))return v; var d=Math.ceil(Math.log10(Math.abs(v))); var p=15-d;
+    if(p>308)p=308; if(p<-308)p=-308; var m=Math.pow(10,p); return Math.round(v*m)/m; }
+  function eFLOOR(n,s){ s=s||1; return Math.floor(x15(n/s))*s; }
+  function eCEIL(n,s){ s=s||1; return Math.ceil(x15(n/s))*s; }
+  function eROUND(n,d){ var f=Math.pow(10,d||0); var v=x15(n*f); return (v<0?-Math.round(-v):Math.round(v))/f; }
+  function ovr(o,adv){ if(o===""||o===null||o===undefined)return adv; var n=num(o); return n; }
+  function num(v){ if(v===""||v===null||v===undefined)return 0; var n=(typeof v==="string")?parseFloat(v.replace(",",".")):+v; return isFinite(n)?n:0; }
+
+  /* ---- Tabelle (lette dalle celle del foglio) ---- */
+  var ROWS=[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,43,45];
+  var NAMES={15:"Centerbeltnest doppio",16:"Centerbeltnest doppio 2 piani",17:"Centerbeltnest singolo",18:"Centerbeltnest singolo 2 piani",19:"Grando nest",20:"Bolegg Perfecta 1,49m",21:"Bolegg Perfecta 1,89m",22:"Bolegg Perfecta 2,60m",23:"VMS 1,49m",24:"VMS 1,89m",25:"VMS 2,60m",26:"Bolegg Terrace SBN",27:"Bolegg Terrace CBN",28:"Bolegg Terrace CBN Wide",29:"Bolegg Terrace CBN 1 Tier Wide",30:"Bolegg Terrace CBN 1 Side Wide",31:"Bolegg Gallery 3 tier",32:"Bolegg Gallery 3T + VMS in between (fila unica)",33:"Bolegg Gallery 3T +1.6m on top",34:"Bolegg Gallery 2 tier",35:"Bolegg Gallery 2 tier with cover",36:"Bolegg Gallery 2T +2.3m on top",37:"Bolegg Gallery 2T double",38:"Bolegg Gallery 2T double nest-on-top",39:"Bolegg Gallery 2T single nest-on-top",40:"Bolegg Gallery 1 Tier 1.6m",41:"Bolegg Gallery 1 Tier 2.3m",43:"Bolegg Starter (rimonta)",45:"Veranda Aviary"};
+  var GROUPS={15:"Centerbelt",16:"Centerbelt",17:"Centerbelt",18:"Centerbelt",19:"Grando",20:"Bolegg Perfecta",21:"Bolegg Perfecta",22:"Bolegg Perfecta",23:"VMS",24:"VMS",25:"VMS",26:"Bolegg Terrace",27:"Bolegg Terrace",28:"Bolegg Terrace",29:"Bolegg Terrace",30:"Bolegg Terrace",31:"Bolegg Gallery",32:"Bolegg Gallery",33:"Bolegg Gallery",34:"Bolegg Gallery",35:"Bolegg Gallery",36:"Bolegg Gallery",37:"Bolegg Gallery",38:"Bolegg Gallery",39:"Bolegg Gallery",40:"Bolegg Gallery",41:"Bolegg Gallery",43:"Rimonta",45:"Aviary"};
+  // I15..I19: fattori per D10 (detrazione); D8-map per Terrace/Gallery/Veranda; fissi per Perfecta/VMS
+  var D10F={15:{1:0,2:-0.62,3:-1.53},16:{1:0,2:-1.24,3:-1.53},17:{1:0,2:-0.31,3:-0.76},18:{1:0,2:-0.62,3:-0.76},19:{1:0,2:-0.25,3:-1.55}};
+  var FIX={20:2.98,21:3.78,22:5.2,23:1.49,24:1.89,25:2.6};
+  var D8M={26:{1:5.11,2:5.11,3:4.49,4:4.49},27:{1:4.49,2:4.49,3:4.49,4:4.49},28:{1:5.2,2:5.2,3:5.2,4:5.2},29:{1:2.6,2:2.6,3:2.6,4:2.6},30:{1:4.89,2:4.89,3:4.89,4:4.89},31:{1:6.467,2:6.467,3:4.732,4:4.732},32:{1:15.17,2:15.17,3:11.7,4:11.7},33:{1:14.19,2:14.19,3:11.43,4:11.43},34:{1:4.498,2:4.498,3:3.788,4:3.788},35:{1:5.434,2:5.434,3:3.788,4:3.788},36:{1:11.71,2:11.71,3:10.29,4:10.29},37:{1:14.14,2:14.14,3:12.72,4:12.72},38:{1:14.14,2:14.14,3:12.72,4:12.72},39:{1:6.746,2:6.746,3:6.036,4:6.036},40:{1:2.853,2:2.853,3:1.54,4:1.54},41:{1:3.561,2:3.561,3:2.248,4:2.248},45:{1:6.746,2:6.746,3:6.036,4:6.036}};
+  // Nidi (righe 55..76): sysRow -> {K,L,walk} ; walk: quali walkover sottrarre dalle sezioni
+  var NEST={15:{K:2.22,L:0,w:"79"},16:{K:4.44,L:0,w:"79"},17:{K:1.11,L:0,w:"79"},18:{K:2.22,L:0,w:"79"},19:{K:2.38,L:2.38,w:"79"},
+            26:{K:2.55,L:2.38,w:"7879"},27:{K:2.55,L:2.38,w:"7879"},28:{K:2.55,L:2.38,w:"7879"},29:{K:2.55,L:2.38,w:"7879"},30:{K:2.55,L:2.38,w:"7879"},
+            31:{K:2.55,L:2.38,w:"79"},32:{K:5.1,L:4.762,w:"79"},33:{K:5.1,L:4.762,w:"79"},34:{K:2.55,L:2.38,w:"79"},35:{K:2.55,L:2.38,w:"79"},
+            36:{K:5.1,L:4.762,w:"79"},37:{K:5.1,L:4.762,w:"79"},38:{K:7.48,L:7.142,w:"79"},39:{K:3.83,L:3.57,w:"79"},40:{K:1.275,L:1.19,w:"79"},
+            41:{K:1.275,L:1.19,w:"79"},45:{K:2.38,L:2.38,w:"79"}};
+  var REGULATIONS=[{id:"1",label:"Nessuna / None"},{id:"2",label:"EU"},{id:"3",label:"KAT"},{id:"4",label:"BIO KAT"},{id:"5",label:"KAT rearing (rimonta)"}];
+  var AREA_METHODS=[{id:"1",label:"Capannone intero"},{id:"2",label:"Capannone − nastro uova"},{id:"3",label:"Capannone − nido − nastro"}];
+
+  function defaults(){ return {D4:"",D5:"",D6:"",D8:"2",D10:"1",C13:0,E13:0,C14:0,E14:0,C78:0,C79:0,C89:0,C86o:"",C96o:"",C97o:"",C:{},E:{}}; }
+
+  function calculate(inp){
+    var r=Object.assign(defaults(),inp||{});
+    var D8=+(""+r.D8), D10=+(""+r.D10);
+    var C={},E={},i,k;
+    for(i=0;i<ROWS.length;i++){k=ROWS[i];C[k]=num((r.C||{})[k]);E[k]=num((r.E||{})[k]);}
+    // retrocompatibilità: systemRow/rows/sections come slot singolo
+    if(r.systemRow&&num(r.rows)>0){C[+r.systemRow]=num(r.rows);E[+r.systemRow]=num(r.sections);}
+    var C13=num(r.C13),E13=num(r.E13),C14=num(r.C14),E14=num(r.E14);
+    var C78=num(r.C78),C79=num(r.C79),C89=num(r.C89);
+
+    /* ---- Superfici I13..I46 ---- */
+    var I={}; I[13]=C13*E13; I[14]=C14*E14;
+    for(i=0;i<ROWS.length;i++){ k=ROWS[i]; var f;
+      if(D10F[k]) f=C[k]*(E[k]-C79)*2.3*(D10F[k][D10]||0);
+      else if(FIX[k]!==undefined) f=C[k]*E[k]*2.3*FIX[k];
+      else if(k===43) f=(D8===5)?C[k]*E[k]*5.27*2.3:0;
+      else f=C[k]*E[k]*((D8M[k]||{})[D8]||0)*2.3;
+      I[k]=f;
+    }
+    var I46=I[13]+I[14]; for(i=0;i<ROWS.length;i++)I46+=I[ROWS[i]];
+
+    /* ---- I47..I50 ---- */
+    var I47={1:9,2:9,3:9,4:6,5:18}[D8]||0;
+    var I48=I47*I46;
+    var I49={1:"NVT",2:"NVT",3:18,4:12,5:36}[D8]; if(I49===undefined)I49="";
+    var I50=(I49==="NVT"||I49==="")?"":(I49*I[13])+(I47*I[14]);
+
+    /* ---- Nidi I55..I76 → I80 ---- */
+    var C54={1:120,2:120,3:120,4:83.3}[D8]||0;
+    var nest={}, I80=0;
+    for(var nr in NEST){ nr=+nr; var d=NEST[nr];
+      var Er=(C[nr]>0)?(E[nr]-(d.w==="7879"?(C78+C79):C79)):0;
+      var dens=(D8===1||D8===2)?d.K:(D8===3||D8===4)?d.L:0;
+      var N=eROUND(dens*C54,0);
+      nest[nr]={sections:Er,perNest:N,birds:C[nr]*Er*N};
+      I80+=nest[nr].birds;
+    }
+    if(D8===5)I80+=9999999;
+
+    /* ---- Alimentazione ---- */
+    var C83=10;
+    var sumE=0,maxE=0,firstE=0;
+    for(i=0;i<ROWS.length;i++){k=ROWS[i];sumE+=E[k];if(E[k]>maxE)maxE=E[k];}
+    for(i=0;i<ROWS.length;i++){k=ROWS[i];if(E[k]>0){firstE=E[k];break;}}
+    var C85=(I80<I48)?((sumE>0)?eCEIL((I80*(C83/100))/(sumE*2.3)/2/2,1):0)
+                     :((maxE>0)?eCEIL((I48*(C83/100))/(maxE*2.3)/2/2,1):0);
+    var C86=ovr(r.C86o,C85),E86=firstE;
+    var I86=(C86>0)?(C86*2*E86*2.3*2/(C83/100)):0;
+    var C87=(I80<I48)?eCEIL((I86<I80)?(I80-I86)/26:0,1):eCEIL((I86<I48)?(I48-I86)/26:0,1);
+    var I87=(I86<I48)?C87*26:0;
+    var E89=firstE;
+    var I89=(C89>0)?(C89*E89*159.47):0;
+    var I91=I86+I87+I89;
+
+    /* ---- Abbeveraggio ---- */
+    var C93=10;
+    var sTerr=C[26]+C[27]+C[28]+C[30];
+    var sGal=C[31]+C[32]+C[33]+C[34]+C[35]+C[36]+C[37]+C[38]+C[39];
+    var C95;
+    if(r.adviceMode==="excel"){
+      // consiglio originale del foglio (per i test di fedeltà)
+      C95=(sTerr>0)?3*sTerr:((C[29]>0)?C[29]*2:((sGal>0)?sGal*2:(C[40]+C[41])*1));
+    }else{
+      // consiglio REALE Tezza: Gallery = 2 linee per struttura (1° e 2° livello),
+      // quindi le varianti doppie (32 in-between, 37/38 double) = 4 linee/fila.
+      var galSingle=C[31]+C[33]+C[34]+C[35]+C[36]+C[39];
+      var galDouble=C[32]+C[37]+C[38];
+      C95=(sTerr>0)?3*sTerr:((C[29]>0)?C[29]*2:(((galSingle+galDouble)>0)?(galSingle*2+galDouble*4):(C[40]+C[41])*1));
+    }
+    var C96=ovr(r.C96o,C95),E96=firstE,C97=ovr(r.C97o,10);
+    var I96=E96*C96*C97*C93, I99=I96;
+
+    /* ---- Trespoli ---- */
+    var C102={1:15,2:15,3:15,4:18,5:10}[D8]||0;
+    var C104=(sTerr>0)?sTerr*6:0, E104=E86;
+    var I104=eFLOOR((E104*C104*2.3)/(C102/100),1);
+    var C105=(C[45]>0)?C[45]:0, E105=(C[45]>0)?E[45]:0;
+    var I105=eFLOOR((E105*C105*2.3)/(C102/100),1);
+    var C106=(C[20]>0)?C[20]*5:((C[21]>0)?C[21]*7:((C[22]>0)?C[22]*9:0));
+    var E106=(C[20]>0)?E[20]:((C[21]>0)?E[21]:((C[22]>0)?E[22]:0));
+    var I106=eFLOOR((E106*C106*2.3)/(C102/100),1);
+    var C107=(C[43]>0)?C[43]*4:C86*2, E107=E86;
+    var I107=eFLOOR((E107*C107*2.3)/(C102/100),1);
+    var C108=C89*2, E108=(C108>0)?E89:0;
+    var I108=((C108*E108*2.3)-(C108*E108*2.3*(4/3)*0.3))/(C102/100);
+    var C109=((C[15]+C[16]+C[17]+C[18]+C[19]+C[43])>0)?C96:0, E109=(C109>0)?E96:0;
+    var I109=eFLOOR((E109*C109*2.3)/(C102/100),1);
+    var s109=I104+I105+I106+I107+I108+I109, E110=E96;
+    var C110=(I80<I48)?((E110>0&&s109<I80)?eCEIL(((I80-s109)*(C102/100))/(2.3*E110),1):0)
+                      :((E110>0&&s109<I48)?eCEIL(((I48-s109)*(C102/100))/(2.3*E110),1):0);
+    var I110=eFLOOR((E110*C110*2.3)/(C102/100),1);
+    var s110=s109+I110, E111=1.925;
+    var C111=(I80<I48)?((s110<I80)?eCEIL(((I80-s110)*(C102/100))/(2.3*E111),1):0)
+                      :((s110<I48)?eCEIL(((I48-s110)*(C102/100))/(2.3*E111),1):0);
+    var I111=(s110<I80)?(C111*E111)/0.15:0;
+    var I112=s110+I111;
+
+    /* ---- Risultato ---- */
+    var mins=[I48,I80,I91,I99,I112]; if(I50!=="")mins.push(I50);
+    var C115=Math.min.apply(null,mins);
+
+    var selected=[]; for(i=0;i<ROWS.length;i++){k=ROWS[i];if(C[k]>0)selected.push({row:k,name:NAMES[k],group:GROUPS[k],rows:C[k],sections:E[k],surface:I[k],nest:nest[k]||null});}
+    return {I13:I[13],I14:I[14],I46:I46,I47:I47,I48:I48,I49:I49,I50:I50,
+      C54:C54,I80:I80,C83:C83,C85:C85,C86:C86,E86:E86,I86:I86,C87:C87,I87:I87,C89:C89,I89:I89,I91:I91,
+      C93:C93,C95:C95,C96:C96,E96:E96,C97:C97,I96:I96,I99:I99,C102:C102,
+      C104:C104,I104:I104,C105:C105,I105:I105,C106:C106,I106:I106,C107:C107,I107:I107,C108:C108,I108:I108,
+      C109:C109,I109:I109,C110:C110,I110:I110,C111:C111,I111:I111,I112:I112,C115:C115,E105:E105,E106:E106,E111:E111,
+      selected:selected,D8:D8,D10:D10,houseW:C13,houseL:E13,coldW:C14,coldL:E14,C78:C78,C79:C79,
+      surfaceSystem:(function(){var t=0;for(var j=0;j<ROWS.length;j++)t+=I[ROWS[j]];return t;})()};
+  }
+  /* ---- Modalità pulcinaia (verifica): replica foglio rearing Vencomatic ---- */
+  function rearing(inp){
+    var r=Object.assign({hw:18,hl:129.95,cw:0,cl:0,rows:3,secs:56,starterW:5.544,capiSez:485,
+      circ:7.5,dlines:18,nip:12,pChain:12,pDrink:"",pStarter:"",pExtra:12},inp||{});
+    var hw=num(r.hw),hl=num(r.hl),cw=num(r.cw),cl=num(r.cl),rows=num(r.rows),secs=num(r.secs);
+    var starterW=num(r.starterW),capiSez=num(r.capiSez),circ=num(r.circ),dlines=num(r.dlines),nip=num(r.nip);
+    var totSec=rows*secs, capi=totSec*capiSez;
+    var birdArea=hw*hl, coldArea=cw*cl, starterArea=rows*secs*2.3*starterW;
+    var surf=birdArea+coldArea+starterArea;
+    var max18=eFLOOR(18*surf,1);                       // limite rimonta 18 capi/m2 (I47 D8=5)
+    var dens=surf>0?capi/surf:0;
+    var feedM=circ*secs*2.3*4;                          // circuiti x sezioni x 2,3 x 2 lati x 2
+    var feedCm=capi>0?feedM*100/capi:0;
+    var nipples=dlines*secs*nip;
+    var birdsNip=nipples>0?capi/nipples:0;
+    var pChain=num(r.pChain);
+    var pDrink=(r.pDrink===""||r.pDrink==null)?dlines:num(r.pDrink);
+    var pStarter=(r.pStarter===""||r.pStarter==null)?rows*8:num(r.pStarter);
+    var pExtra=num(r.pExtra);
+    var mL=function(l){return l*secs*2.3;};
+    var perchTot=mL(pChain)+mL(pDrink)+mL(pStarter)+mL(pExtra);
+    var perchCm=capi>0?perchTot*100/capi:0;
+    return {totSec:totSec,capi:capi,birdArea:birdArea,coldArea:coldArea,starterArea:starterArea,surf:surf,
+      max18:max18,dens:dens,feedM:feedM,feedCm:feedCm,nipples:nipples,birdsNip:birdsNip,
+      pChain:pChain,pDrink:pDrink,pStarter:pStarter,pExtra:pExtra,
+      mChain:mL(pChain),mDrink:mL(pDrink),mStarter:mL(pStarter),mExtra:mL(pExtra),
+      perchTot:perchTot,perchCm:perchCm,perchTarget:10,densTarget:18};
+  }
+  var API={calculate:calculate,rearing:rearing,defaults:defaults,ROWS:ROWS,NAMES:NAMES,GROUPS:GROUPS,REGULATIONS:REGULATIONS,AREA_METHODS:AREA_METHODS};
+  if(typeof module!=="undefined"&&module.exports)module.exports=API; else root.BirdCalc=API;
+})(typeof window!=="undefined"?window:this);
+
+/* ============ UI Tezza — sistemi A+B, stile macelleria ============ */
+(function(){
+  var BC=window.BirdCalc, $=function(id){return document.getElementById(id);};
+  var IT=function(n){return Math.round(n).toLocaleString("it-IT",{useGrouping:true});};
+  var NUM=function(n,d){return (+n).toLocaleString("it-IT",{minimumFractionDigits:0,maximumFractionDigits:d==null?2:d,useGrouping:true});};
+  var REG_LBL={1:"Nessuna normativa",2:"Standard EU",3:"Standard KAT",4:"Standard BIO KAT",5:"KAT rimonta"};
+
+  function fillSys(sel,withNone){
+    if(withNone) sel.add(new Option("— nessuno —",""));
+    var groups={};
+    BC.ROWS.forEach(function(row){
+      var g=BC.GROUPS[row];
+      if(!groups[g]){var og=document.createElement("optgroup");og.label=g;sel.appendChild(og);groups[g]=og;}
+      groups[g].appendChild(new Option(BC.NAMES[row],row));
+    });
+  }
+  BC.REGULATIONS.forEach(function(o){$("D8").add(new Option(o.label,o.id));});
+  BC.AREA_METHODS.forEach(function(o){$("D10").add(new Option(o.id+" · "+o.label,o.id));});
+  fillSys($("sysA"),false); fillSys($("sysB"),true);
+
+  function setDefaults(){
+    $("D8").value="2"; $("D10").value="1";
+    $("sysA").value="27"; $("rowsA").value=4; $("secsA").value=30;
+    $("sysB").value="";  $("rowsB").value=0; $("secsB").value=0;
+    ["C13","E13","C14","E14","C78","C79","C89"].forEach(function(k){$(k).value=0;});
+    $("C13").value=20; $("E13").value=100;
+    $("C86o").value="";$("C96o").value="";$("C97o").value=16;
+    $("D4").value="";$("D5").value="";$("D6").value="";
+  }
+  function readInputs(){
+    var Cv={},Ev={};
+    var a=+$("sysA").value; if(a){Cv[a]=$("rowsA").value; Ev[a]=$("secsA").value;}
+    var b=+$("sysB").value;
+    if(b){
+      if(b===a){ Cv[a]=+(Cv[a]||0)+ +($("rowsB").value||0); }      // stesso sistema: somma file, sezioni da A (come una sola riga Excel)
+      else { Cv[b]=+($("rowsB").value||0); Ev[b]=$("secsB").value; }
+    }
+    return {D8:$("D8").value,D10:$("D10").value,C:Cv,E:Ev,
+      C13:$("C13").value,E13:$("E13").value,C14:$("C14").value,E14:$("E14").value,
+      C78:$("C78").value,C79:$("C79").value,C89:$("C89").value,
+      C86o:$("C86o").value,C96o:$("C96o").value,C97o:$("C97o").value};
+  }
+  function drawAuto(R){
+    $("C96o").placeholder="auto ("+R.C95+")";
+    $("C86o").placeholder="auto ("+R.C85+")";
+    var i49=(R.I49==="NVT"||R.I49==="")?("non previsto ("+(R.D8===2?"EU":"norm.")+")"):NUM(R.I49,0);
+    var rows=[["Capi / m²",NUM(R.I47,0)],["Capi / m² capannone",i49],
+      ["Capi / m² nido",NUM(R.C54,1)],["cm / capo trespoli",NUM(R.C102,0)],
+      ["cm / capo mangiatoia",NUM(R.C83,0)],["Capi / nipple",NUM(R.C93,0)]];
+    $("autopGrid").innerHTML=rows.map(function(r){return '<div class="it"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';}).join("");
+  }
+  function render(){
+    var R=BC.calculate(readInputs());
+    if($("M2CAP")){$("M2CAP").value=NUM(R.I13,2);$("M2TOT").value=NUM(R.I46,2);}
+    $("barNum").textContent=IT(R.C115);
+    drawAuto(R);
+    if($("viewResult").classList.contains("active")) drawReport(R);
+    return R;
+  }
+  function esc(s){return(""+s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function drow(l,v){return '<div class="drow"><span class="lab">'+l+'</span><span class="val">'+v+'</span></div>';}
+
+  function drawReport(R){
+    var F=[{key:"I48",nm:"Superficie totale",ds:NUM(R.I47,0)+" animali / m²",v:R.I48},
+           {key:"I80",nm:"Superficie nidi",ds:(R.D8===5)?"non applicabile (rimonta)":(R.I80>0?"da tabella nidi Vencomatic":"nessun nido integrato"),v:R.I80,na:(R.D8===5)},
+           {key:"I91",nm:"Alimentazione",ds:NUM(R.C83,0)+" cm / animale",v:R.I91},
+           {key:"I99",nm:"Abbeveraggio",ds:IT(R.C96)+" linee \u00b7 "+IT(R.C97)+" nipple/sez",v:R.I99},
+           {key:"I112",nm:"Trespoli",ds:NUM(R.C102,0)+" cm / animale",v:R.I112}];
+    if(R.I50!=="")F.splice(1,0,{key:"I50",nm:"Superficie capannone",ds:NUM(R.I49,0)+" an. / m² cap.",v:R.I50});
+    var cand=F.filter(function(f){return !f.na;}).map(function(f){return f.v;});
+    var bind=Math.min.apply(null,cand),EPS=1e-6;
+    var isB=function(f){return !f.na&&Math.abs(f.v-bind)<EPS;};
+
+    var tiles=F.map(function(f){var b=isB(f);
+      var val=f.na?'<div class="na">n/d</div>':'<div class="v">'+IT(f.v)+'<small>capi</small></div>';
+      return '<div class="tile'+(b?' bind':'')+'"><div class="nm">'+f.nm+(b?'<span class="badge">VINCOLA</span>':'')+'</div>'+val+'<div class="ds">'+f.ds+'</div></div>';}).join("");
+
+    var chartF=F.filter(function(f){return !f.na&&f.v<9000000;});
+    var maxV=Math.max.apply(null,chartF.map(function(f){return f.v;}).concat([1]));
+    var bars=chartF.map(function(f){var b=isB(f),w=Math.max(2,(f.v/maxV)*100);
+      return '<div class="bar-row"><div class="bl">'+f.nm+'</div><div class="bar-track"><div class="bar-fill '+(b?"bind":"dim")+'" style="width:'+w+'%"></div></div><div class="bar-val'+(b?" bind":"")+'">'+IT(f.v)+'</div></div>';}).join("");
+
+    var soloNido=(R.C115===0&&R.I99===0&&R.selected.length>=1);
+    var notice=soloNido?'<div class="notice"><b>Manca abbeveraggio/trespoli.</b> Come nell\u2019Excel, i sistemi solo-nido (Centerbelt, Grando, VMS, Perfecta) da soli danno 0: aggiungi un <b>Sistema B</b> (es. Veranda Aviary o Bolegg) per il numero reale.</div>':"";
+
+    var d='<div class="detail">';
+    d+='<div class="dl">Superficie</div>';
+    d+=drow("Capannone",NUM(R.houseW,1)+" \u00d7 "+NUM(R.houseL,1)+" m = "+NUM(R.I13,1)+" m\u00b2");
+    if(R.I14>0)d+=drow("Giardino d'inverno",NUM(R.coldW,1)+" \u00d7 "+NUM(R.coldL,1)+" m = "+NUM(R.I14,1)+" m\u00b2");
+    R.selected.forEach(function(s){d+=drow(s.name,IT(s.rows)+" file \u00d7 "+NUM(s.sections,1)+" sez \u2192 "+NUM(s.surface,1)+" m\u00b2");});
+    d+=drow("Superficie totale (I46)",NUM(R.I46,2)+" m\u00b2");
+    d+=drow("Animali su superficie (I48)",NUM(R.I48,2));
+    if(R.I50!=="")d+=drow("Animali su sup. capannone (I50)",NUM(R.I50,2));
+    if(R.D8!==5){
+      d+='<div class="dl">Nidi</div>';
+      R.selected.forEach(function(s){ if(s.nest&&s.nest.birds>0)
+        d+=drow(s.name,NUM(s.nest.sections,1)+" sez \u00b7 "+IT(s.nest.perNest)+" capi/sez \u2192 "+IT(s.nest.birds));});
+      d+=drow("Animali su nidi (I80)",IT(R.I80));
+    }
+    d+='<div class="dl">Alimentazione</div>';
+    d+=drow("Catena: circuiti \u00d7 sezioni",IT(R.C86)+(R.C86!==R.C85?" (impostati)":" (consiglio)")+" \u00d7 "+NUM(R.E86,0)+" \u2192 "+NUM(R.I86,1));
+    if(R.C87>0)d+=drow("Piatti extra (C87)",IT(R.C87)+" \u2192 "+IT(R.I87));
+    if(R.C89>0)d+=drow("Panfeed",IT(R.C89)+" circuiti \u2192 "+NUM(R.I89,1));
+    d+=drow("Animali su alimentazione (I91)",NUM(R.I91,1));
+    d+='<div class="dl">Abbeveraggio</div>';
+    d+=drow("Linee \u00d7 nipple/sez",IT(R.C96)+(R.C96!==R.C95?" (impostate)":" (consiglio)")+" \u00d7 "+IT(R.C97)+(R.C97!==10?" (impostati)":"")+" \u2192 "+IT(R.I96));
+    d+=drow("Animali su abbeveraggio (I99)",IT(R.I99));
+    d+='<div class="dl">Trespoli</div>';
+    if(R.I104>0)d+=drow("Sistema Bolegg (I104)",IT(R.I104));
+    if(R.I105>0)d+=drow("Veranda Aviary (I105)",IT(R.I105));
+    if(R.I106>0)d+=drow("Livello Perfecta (I106)",IT(R.I106));
+    d+=drow("Catena alimentazione (I107)",IT(R.I107));
+    if(R.I108>0)d+=drow("Panfeed (I108)",NUM(R.I108,1));
+    if(R.I109>0)d+=drow("Abbeveraggio (I109)",IT(R.I109));
+    if(R.I110>0)d+=drow("Extra longitudinali (I110)",IT(R.I110));
+    if(R.I111>0)d+=drow("Extra trasversali (I111)",NUM(R.I111,1));
+    d+=drow("Animali su trespoli (I112)",NUM(R.I112,1));
+    d+='</div>';
+
+    var bindName=(F.filter(isB)[0]||{}).nm||"\u2014";
+    var sysA=R.selected[0]?R.selected[0].name:"\u2014";
+    var sysB=R.selected[1]?R.selected[1].name:null;
+    var html='<div class="hero"><div class="cap">Questo capannone \u00e8 adatto per</div>'
+      +'<div class="n">'+IT(R.C115)+'</div><div class="u">animali</div>'
+      +'<div class="exact">valore esatto: '+NUM(R.C115,2)+' (= cella C115 Excel)</div>'
+      +'<div class="bind">Fattore vincolante: <b>'+esc(bindName)+'</b></div></div>'
+      +notice
+      +'<dl class="meta"><dt>Cliente</dt><dd>'+esc($("D4").value||"\u2014")+'</dd>'
+      +'<dt>Nazione</dt><dd>'+esc($("D5").value||"\u2014")+'</dd><dt>VEN</dt><dd>'+esc($("D6").value||"\u2014")+'</dd>'
+      +'<dt>Sistema A</dt><dd style="font-size:11px">'+esc(sysA)+'</dd>'
+      +(sysB?'<dt>Sistema B</dt><dd style="font-size:11px">'+esc(sysB)+'</dd>':'')
+      +'<dt>Normativa</dt><dd style="font-size:11px">'+esc(REG_LBL[R.D8]||"")+'</dd></dl>'
+      +'<div class="sect-t" style="padding:2px 2px 8px">Animali per fattore limitante</div>'
+      +'<div class="tiles">'+tiles+'</div>'
+      +'<div class="panel"><div class="ph">Confronto fattori limitanti</div>'
+      +'<div class="psub">Il risultato \u00e8 il minimo tra questi valori (MIN come in Excel).</div>'+bars+'</div>'
+      +d
+      +'<div class="disc">Le linee guida sono interpretate da Vencomatic con cura; l\u2019approvazione delle autorit\u00e0 locali non \u00e8 garantita. Far verificare i numeri prima di firmare l\u2019offerta.</div>';
+    $("report").innerHTML=html;
+  }
+
+  function show(v){
+    $("viewInput").classList.toggle("active",v==="input");
+    $("viewResult").classList.toggle("active",v==="result");
+    $("resbar").style.display=(v==="input")?"block":"none";
+    window.scrollTo(0,0);
+    if(v==="result")render();
+  }
+  document.querySelectorAll("[data-toggle]").forEach(function(b){b.addEventListener("click",function(){b.parentElement.classList.toggle("collapsed");});});
+  $("sysB").addEventListener("change",function(){
+    $("slotB").classList.toggle("slotB-off",!$("sysB").value);
+    if($("sysB").value&&(+$("rowsB").value||0)===0){$("rowsB").value=2;$("secsB").value=$("secsA").value;}
+    render();
+  });
+  document.querySelectorAll("input,select").forEach(function(el){el.addEventListener("input",render);el.addEventListener("change",render);});
+  /* lunghezza utile fissa = sezioni × 2,3 (max tra A e B) */
+  function syncLen(){
+    var sA=(+(""+$("secsA").value).replace(",","."))||0;
+    var sB=($("sysB").value?(+(""+$("secsB").value).replace(",","."))||0:0);
+    var L=Math.max(sA,sB)*2.3;
+    $("E13").value=(Math.round(L*100)/100).toString().replace(".",",");
+    render();
+  }
+  ["secsA","secsB","sysB"].forEach(function(id){
+    $(id).addEventListener("input",syncLen); $(id).addEventListener("change",syncLen);
+  });
+  syncLen();
+  $("resbarInner").addEventListener("click",function(){show("result");});
+  $("back").addEventListener("click",function(){show("input");});
+  function pln(c1,c2,num,ann){return '<tr class="ln"><td class="c1">'+c1+'</td><td class="c2">'+(c2||"")+'</td><td class="num">'+num+(ann?' <span class="ann">'+ann+'</span>':'')+'</td></tr>';}
+  function ptot(c1,num,ann){return '<tr class="ln tot"><td class="c1">'+c1+'</td><td></td><td class="num">'+num+(ann?' <span class="ann">'+ann+'</span>':'')+'</td></tr>';}
+  function buildPrint(){
+    var R=BC.calculate(readInputs());
+    var oggi=new Date().toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit",year:"numeric"});
+    var sysA=R.selected[0]?R.selected[0].name:"\u2014";
+    var sysB=R.selected[1]?R.selected[1].name:null;
+    var F=[["Superficie totale",R.I48],["Nidi",R.I80],["Alimentazione",R.I91],["Abbeveraggio",R.I99],["Trespoli",R.I112]];
+    if(R.I50!=="")F.splice(1,0,["Superficie capannone",R.I50]);
+    var candidati=F.filter(function(f){return !(R.D8===5&&f[0]==="Nidi");});
+    var bind=candidati.reduce(function(a,b){return b[1]<a[1]?b:a;});
+    var h='';
+    h+='<div class="ph-band"><div class="ph-brand"><div class="ph-mark">T</div><div><div class="ph-t1">TEZZA SRL</div><div class="ph-t2">Calcolo numero animali \u00b7 Nidi &amp; Voliere</div></div></div>'
+      +'<div class="ph-date">'+oggi+'<br>calcoloanimalitezza.netlify.app</div></div>';
+    h+='<table class="cli">'
+      +'<tr><td>Cliente</td><td>'+esc($("D4").value||"\u2014")+'</td></tr>'
+      +'<tr><td>Nazione</td><td>'+esc($("D5").value||"\u2014")+'</td></tr>'
+      +'<tr><td>Numero di VEN</td><td>'+esc($("D6").value||"\u2014")+'</td></tr>'
+      +'<tr><td>Tipo di sistema</td><td>'+esc(sysA)+(sysB?' + '+esc(sysB):'')+'</td></tr>'
+      +'<tr><td>Normativa</td><td>'+esc(REG_LBL[R.D8]||"")+'</td></tr></table>';
+    // SUPERFICIE
+    h+='<div class="sec"><h3>Superficie totale</h3><table>';
+    h+=pln("Superficie capannone",NUM(R.houseW,2)+" \u00d7 "+NUM(R.houseL,2)+" m",NUM(R.I13,1)+" m\u00b2");
+    if(R.I14>0)h+=pln("Giardino d'inverno",NUM(R.coldW,2)+" \u00d7 "+NUM(R.coldL,2)+" m",NUM(R.I14,1)+" m\u00b2");
+    R.selected.forEach(function(s){h+=pln(s.name,IT(s.rows)+" file \u00d7 "+NUM(s.sections,1)+" sezioni",NUM(s.surface,1)+" m\u00b2");});
+    h+=ptot("Superficie totale",NUM(R.I46,1)+" m\u00b2");
+    h+=ptot("Numero di animali basato sulla superficie",IT(R.I48),"("+NUM(R.I47,0)+" animali / m\u00b2)");
+    if(R.I50!=="")h+=pln("Limite superficie capannone","",IT(R.I50),"("+NUM(R.I49,0)+" an. / m\u00b2 cap.)");
+    h+='</table></div>';
+    // NIDI
+    if(R.D8!==5&&R.I80>0){
+      h+='<div class="sec"><h3>Nidi totali</h3><table>';
+      R.selected.forEach(function(s){if(s.nest&&s.nest.birds>0)
+        h+=pln(s.name,NUM(s.nest.sections,1)+" sez nido \u00d7 "+IT(s.rows)+" file",IT(s.nest.birds),"("+IT(s.nest.perNest)+" animali / sez)");});
+      h+=ptot("Numero di animali basato sui nidi",IT(R.I80));
+      h+='</table></div>';
+    }
+    // ALIMENTAZIONE
+    h+='<div class="sec"><h3>Sistema di alimentazione</h3><table>';
+    h+=pln("Catena di alimentazione",IT(R.C86)+" circuiti \u00d7 "+NUM(R.E86,1)+" sezioni",NUM(R.C86*R.E86*2.3*4,1)+" m","\u2192 "+NUM(R.I86,0)+" animali");
+    if(R.C87>0)h+=pln("Piatti supplementari",IT(R.C87)+" piatti",IT(R.I87)+" animali");
+    if(R.C89>0)h+=pln("Panfeed",IT(R.C89)+" circuiti",NUM(R.I89,0)+" animali");
+    h+=ptot("Numero di animali basato sull'alimentazione",IT(R.I91),"("+NUM(R.C83,0)+" cm / animale)");
+    h+='</table></div>';
+    // ABBEVERAGGIO
+    h+='<div class="sec"><h3>Sistema di abbeveraggio</h3><table>';
+    h+=pln("Linee abbeveraggio",IT(R.C96)+" linee \u00d7 "+NUM(R.E96,1)+" sezioni \u00d7 "+IT(R.C97)+" nipple",IT(R.C96*R.E96*R.C97)+" nipple");
+    h+=ptot("Numero di animali basato sull'abbeveraggio",IT(R.I99),"("+NUM(R.C93,0)+" animali / nipple)");
+    h+='</table></div>';
+    // TRESPOLI (con metri, come Frontpage ufficiale)
+    h+='<div class="sec"><h3>Trespoli</h3><table>';
+    var pr=function(nome,linee,sez,animali){ if(animali>0)h+=pln(nome,NUM(sez,1)+" sez \u00d7 "+IT(linee)+" linee",NUM(linee*sez*2.3,1)+" m","\u2192 "+IT(animali)+" animali"); };
+    pr("Trespoli su sistema Bolegg",R.C104,R.E86,R.I104);
+    pr("Trespoli su Veranda",R.C105,R.E105,R.I105);
+    pr("Trespoli su livelli Perfecta",R.C106,R.E106,R.I106);
+    pr("Trespoli su catena alimentazione",R.C107,R.E86,R.I107);
+    if(R.I108>0)h+=pln("Trespoli su panfeed",IT(R.C108)+" linee",NUM(R.C108*R.E86*2.3,1)+" m","\u2192 "+NUM(R.I108,0)+" animali");
+    pr("Trespoli su abbeveratoi",R.C109,R.E96,R.I109);
+    pr("Extra trespoli longitudinali",R.C110,R.E96,R.I110);
+    if(R.I111>0)h+=pln("Extra trespoli trasversali",IT(R.C111)+" \u00d7 1,925 m",NUM(R.C111*1.925,1)+" m","\u2192 "+IT(R.I111)+" animali");
+    h+=ptot("Numero di animali basato sui trespoli",IT(R.I112),"("+NUM(R.C102,0)+" cm / animale)");
+    h+='</table></div>';
+    // FINALE
+    h+='<div class="final"><div class="fl">Questo capannone \u00e8 adatto per</div><div class="fn">'+IT(R.C115)+'<small>animali</small></div></div>';
+    h+='<div class="bindln">Fattore vincolante: <b>'+esc(bind[0])+'</b> \u00b7 valore esatto '+NUM(R.C115,2)+' (cella C115)</div>';
+    h+='<div class="disc-p">Le linee guida sono state interpretate da Vencomatic con molta cura. In ogni caso, Vencomatic non ha influenza sull\u2019approvazione da parte delle autorit\u00e0 locali e quindi non pu\u00f2 garantire che sia dato il permesso. Si consiglia che il cliente si faccia verificare i numeri dalle autorit\u00e0 locali prima di firmare l\u2019offerta.</div>';
+    h+='<div class="tz-foot"><span>Tezza SRL \u00b7 Via E. Torricelli 13, 37135 Verona \u00b7 P.IVA 02526240235</span><span>Dati tecnici Vencomatic Group</span></div>';
+    document.getElementById("printPage").innerHTML=h;
+  }
+  function ensureHtml2pdf(){
+    return new Promise(function(res,rej){
+      if(window.html2pdf)return res();
+      var s=document.createElement("script");
+      s.src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js";
+      s.onload=function(){res();}; s.onerror=function(){rej(new Error("cdn"));};
+      document.head.appendChild(s);
+      setTimeout(function(){window.html2pdf?res():rej(new Error("timeout"));},window.__pdfTimeout||9000);
+    });
+  }
+  function pdfFileName(){
+    var c=($("D4").value||"calcolo").trim().replace(/[^\w\- ]+/g,"").replace(/ +/g,"_")||"calcolo";
+    var d=new Date(),ds=d.getFullYear()+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.getDate()).slice(-2);
+    return "Tezza_"+c+"_"+ds+".pdf";
+  }
+  function makePdf(){
+    buildPrint();
+    var el=document.getElementById("printPage");
+    toast("Genero il PDF\u2026");
+    ensureHtml2pdf().then(function(){
+      el.classList.add("pdfmode");
+      var opt={margin:[10,10,12,10],filename:pdfFileName(),image:{type:"jpeg",quality:.96},
+        html2canvas:{scale:2,useCORS:true,backgroundColor:"#ffffff"},
+        jsPDF:{unit:"mm",format:"a4",orientation:"portrait"},pagebreak:{mode:["css","legacy"]}};
+      return window.html2pdf().set(opt).from(el).outputPdf("blob").then(function(blob){
+        el.classList.remove("pdfmode");
+        var f;try{f=new File([blob],opt.filename,{type:"application/pdf"});}catch(e){f=null;}
+        if(f&&navigator.canShare&&navigator.canShare({files:[f]})){
+          return navigator.share({files:[f],title:"Calcolo animali",text:"Calcolo numero animali \u2013 Tezza SRL"})
+            .then(function(){toast("\u2713 PDF condiviso");}).catch(function(){});
+        }
+        var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=opt.filename;
+        document.body.appendChild(a);a.click();a.remove();
+        toast("\u2713 PDF scaricato");
+      });
+    }).catch(function(){
+      el.classList.remove("pdfmode");
+      window.print();
+    });
+  }
+  $("print").addEventListener("click",makePdf);
+
+  /* ---------- Archivio Tezza (Supabase) ---------- */
+  function getVenditore(){
+    var s=$("VEND_SEL").value;
+    return s==="ALTRO"?($("VEND_ALTRO").value||"").trim():s;
+  }
+  (function(){
+    var W=$("VEND_ALTRO_WRAP");
+    function sync(){W.style.display=($("VEND_SEL").value==="ALTRO")?"block":"none";}
+    $("VEND_SEL").addEventListener("change",function(){sync();
+      try{localStorage.setItem("tz_venditore",$("VEND_SEL").value);}catch(e){}});
+    $("VEND_ALTRO").addEventListener("input",function(){
+      try{localStorage.setItem("tz_venditore_altro",$("VEND_ALTRO").value);}catch(e){}});
+    try{
+      var v=localStorage.getItem("tz_venditore");
+      if(v){$("VEND_SEL").value=v; if(v==="ALTRO")$("VEND_ALTRO").value=localStorage.getItem("tz_venditore_altro")||"";}
+    }catch(e){}
+    sync();
+  })();
+  var SB={url:"https://ttuvedqagblzzcdfljut.supabase.co",key:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0dXZlZHFhZ2JsenpjZGZsanV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjMxNjgsImV4cCI6MjA5OTE5OTE2OH0.5blqHiO5IBUD6-lAtgm8RVYAWEtycVmyG-Up0QVQdOU"};
+  var QKEY="tz_calcoli_queue";
+  function toast(msg,warn){var t=$("toast");t.textContent=msg;t.className="toast show"+(warn?" warn":"");clearTimeout(t._h);t._h=setTimeout(function(){t.className="toast";},3200);}
+  function calcPayload(){
+    var R=BC.calculate(readInputs());
+    var F=[["Superficie totale",R.I48],["Nidi",R.I80],["Alimentazione",R.I91],["Abbeveraggio",R.I99],["Trespoli",R.I112]];
+    if(R.I50!=="")F.splice(1,0,["Superficie capannone",R.I50]);
+    var cand=F.filter(function(f){return !(R.D8===5&&f[0]==="Nidi");});
+    var bind=cand.reduce(function(a,b){return b[1]<a[1]?b:a;})[0];
+    return {venditore:getVenditore()||null,cliente:$("D4").value||null,nazione:$("D5").value||null,
+      ven:$("D6").value||null,sistema_a:R.selected[0]?R.selected[0].name:null,
+      sistema_b:R.selected[1]?R.selected[1].name:null,normativa:REG_LBL[R.D8]||String(R.D8),
+      capannone:NUM(R.houseW,2)+" x "+NUM(R.houseL,2)+" m",risultato:Math.round(R.C115*100)/100,
+      fattore:bind,inputs:readInputs()};
+  }
+  function sbInsert(rows){
+    return fetch(SB.url+"/rest/v1/calcoli_animali",{method:"POST",
+      headers:{"Content-Type":"application/json","apikey":SB.key,"Authorization":"Bearer "+SB.key,"Prefer":"return=minimal"},
+      body:JSON.stringify(rows)}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);});
+  }
+  function loadQ(){try{return JSON.parse(localStorage.getItem(QKEY)||"[]");}catch(e){return[];}}
+  function saveQ(q){try{localStorage.setItem(QKEY,JSON.stringify(q));}catch(e){}}
+  function flushQueue(){
+    var q=loadQ(); if(!q.length)return;
+    sbInsert(q).then(function(){saveQ([]);toast("✓ "+q.length+" calcoli in coda inviati all'archivio");}).catch(function(){});
+  }
+  function saveCalc(){
+    var p=calcPayload(); p.salvato_alle=new Date().toISOString();
+    sbInsert([p]).then(function(){toast("✓ Salvato nell'archivio Tezza");})
+      .catch(function(){var q=loadQ();q.push(p);saveQ(q);
+        toast("Senza rete: salvato sul telefono, invio automatico appena c'\u00e8 campo",true);});
+  }
+  $("save").addEventListener("click",saveCalc);
+  window.addEventListener("online",flushQueue);
+  setTimeout(flushQueue,1500);
+    setDefaults();syncLen();
+})();
+
+// Registra il Service Worker per la PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function(registration) {
+    console.log('Service Worker registrato:', registration);
+  }).catch(function(error) {
+    console.log('Service Worker registration failed:', error);
+  });
+}
+</script>
+</body>
+</html>

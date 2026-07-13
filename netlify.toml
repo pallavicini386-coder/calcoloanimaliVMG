@@ -1,0 +1,41 @@
+# Configurazione Netlify per PWA
+[build]
+  command = ""
+  publish = "/"
+
+# Redirect per SPA (single page application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Cache per asset statici
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Cache lungo per manifest
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+    Cache-Control = "public, max-age=604800"
+
+# No cache per Service Worker (sempre aggiornato)
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Content-Type = "application/javascript"
+
+# Cache lungo per immagini
+[[headers]]
+  for = "/icon*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/splash*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
