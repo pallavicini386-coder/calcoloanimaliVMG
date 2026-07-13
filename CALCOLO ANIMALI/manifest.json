@@ -1,0 +1,18 @@
+{
+  "name": "Calcolo Animali Tezza",
+  "short_name": "TezzaCalc",
+  "description": "Calcolo capi e densità di allevamento Tezza.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1a5c38",
+  "icons": [
+    {"src": "/icon192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icon512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/iconmaskable512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "screenshots": [{"src": "/splash750x1334.png", "sizes": "750x1334", "type": "image/png", "form_factor": "narrow"}],
+  "categories": ["productivity"]
+}
